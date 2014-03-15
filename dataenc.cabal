@@ -38,14 +38,15 @@ library
             Codec.Binary.Yenc
     other-modules:
             Codec.Binary.Util
-
-executable tests
+test-suite tests
+    type: exitcode-stdio-1.0
     main-is: Test.hs
-    hs-source-dirs: test-src src
+    hs-source-dirs: test-src src 
+    extensions: TemplateHaskell
     -- ghc-options: -fhpc
     if flag(tests)
         build-depends: test-framework, test-framework-hunit, HUnit,
-            test-framework-quickcheck2, QuickCheck ==2.5.*,
-            test-framework-th
+            test-framework-quickcheck2, QuickCheck >=2.5,
+            test-framework-th, dataenc 
     else
         buildable: False
